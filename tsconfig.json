@@ -1,0 +1,61 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    // 生成代码的模板标准
+    "module": "esnext",
+
+    // 按照node的模块解析策略去找文件, ts默认用node的解析策略, 即相对路径方式导入规则
+    "moduleResolution": "node",
+    "strict": false,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "strictFunctionTypes": false,
+
+    // 是否跳过声明文件的检查, See <https://github.com/vuejs/vue-cli/pull/5688>
+    "skipLibCheck": true,
+
+    // 是否允许使用 export = {} 导出，由 import from 对导入 CommonJS 模块的支持，需要同时开启 allowSyntheticDefaultImports 项
+    "esModuleInterop": true,
+
+    // 是否将每个文件作为单独的模块(Required in Vite use true)
+    "isolatedModules": true,
+
+    // 是否允许合成缺省导入, 当模块没有默认导出时，允许"从 y 导入 x"
+    "allowSyntheticDefaultImports": true,
+
+    // 是否区分文件名大小写
+    "forceConsistentCasingInFileNames": true,
+
+    // 用来指定编译时是否生成.map文件源映射文件
+    "sourceMap": true,
+
+    // 模块基本目录路径为当前文件根路径下
+    "baseUrl": "./",
+    // 是否编译构建引用项目, SPA Web 独立项止不要设为true, 无法通过 vue-tsc 法语检查, 会报“incremental mode is not yet support”错
+    "composite": false,
+    "allowJs": true, // 允许编写 js 代码
+    "resolveJsonModule": true, // 包含导入的模块。json的扩展
+
+    // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost, 如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array"
+    "lib": ["dom", "esnext"],
+    // "incremental": true, // 增量编译
+    "paths": {
+      "@/*": ["src/*"],
+      "/#/*": ["types/*"]
+    },
+    // vite-svg-loader 由于项目是ts的，要非常注意，需要单独声明模块！！
+    "types": ["node", "vite/client", "webpack-env"],
+    "typeRoots": ["./node_modules/@types/", "./types"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "@/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/*.d.ts",
+    "mock/*.ts",
+    "vite.config.ts"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.js"]
+}

@@ -1,0 +1,95 @@
+// 颜色定义规范
+$color-background: #ffffff;
+$color-background-d: rgba(0, 0, 0, 0.3);
+$color-highlight-background: #333;
+$color-dialog-background: #666;
+$color-theme: #ffcd32;
+$color-theme-d: rgba(255, 205, 49, 0.5);
+$color-sub-menu: #c20c0c;
+$color-sub-menu-active: #9B0909;
+
+$color-success: #52c41a;
+$color-warning: #faad14;
+$color-error: #ff4d4f;
+
+$color-text-d: rgba(255, 255, 255, 0.3);
+$color-text-l: rgba(255, 255, 255, 0.5);
+$color-text-ll: rgba(255, 255, 255, 0.8);
+
+//字体定义规范
+$font-gray: #999;
+$font-size-small-s: 10px;
+$font-size-small: 12px;
+$font-size-medium: 14px;
+$font-size-medium-x: 16px;
+$font-size-large: 18px;
+$font-size-large-x: 22px;
+$font-weight: 600;
+
+@mixin rounded-corners {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin scrollBar {
+  &::-webkit-scrollbar-track-piece {
+    background: #d3dce6;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #99a9bf;
+    border-radius: 20px;
+  }
+}
+
+@mixin relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+// 浅色
+$colors-light: (
+  fill-1: #fff, 
+  text: #3c3c3c, 
+  text-1: #757575, 
+  text-2: #222, 
+);
+// 深色
+$colors-dark: (
+  fill-1: #222, 
+  text: #fff, 
+  text-1: rgba(255, 255, 255, 0.3), 
+  text-2: #ffcd32, 
+);
+
+// 背景色
+@mixin bg-color($key) {
+  background-color: map-get($colors-light, $key);
+
+  [data-theme="dark"] & {
+    background-color: map-get($colors-dark, $key);
+  }
+}
+
+// text色
+@mixin text-color($key) {
+  color: map-get($colors-light, $key);
+
+  [data-theme="dark"] & {
+    color: map-get($colors-dark, $key);
+  }
+}

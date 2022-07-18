@@ -1,0 +1,56 @@
+// cover some element-plus styles
+
+.antd-breadcrumb__inner,
+.antd-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+
+.antd-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.antd-upload__input {
+  display: none;
+}
+
+.antd-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+// refine element ui upload
+.upload-container {
+  .antd-upload {
+    width: 100%;
+
+    .antd-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+// dropdown
+.antd-dropdown-menu {
+  a {
+    display: block;
+  }
+}
+
+// to fix antd-date-picker css style
+.antd-range-separator {
+  box-sizing: content-box;
+}
+
+.antd-loading-mask {
+  z-index: -1;
+}
+
+// antd-tooltip,的权重
+.is-dark {
+  z-index: 99999 !important;
+}

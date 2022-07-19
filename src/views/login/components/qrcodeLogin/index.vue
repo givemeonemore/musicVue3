@@ -95,7 +95,9 @@ const changeLoginMethod = () => {
 onMounted(() => {
   handleQRcode();
 });
+
 onBeforeUnmount(() => {
+  console.log('asassdasadas');
   if (timer) {
     clearInterval(timer);
   }

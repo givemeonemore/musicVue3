@@ -1,3 +1,10 @@
+<!--
+ * @Author: zhouran
+ * @Date: 2022-07-19 09:43:50
+ * @LastEditors: zhouran
+ * @LastEditTime: 2022-07-19 10:02:07
+ * @Description: 
+-->
 <script setup lang="ts">
 import { Modal } from 'ant-design-vue';
 import QRcodeLogin from './components/qrcodeLogin';
@@ -24,7 +31,15 @@ defineExpose({
 
 <template>
   <div ref="modalRef">
-    <Modal :visible="visible" title="登录" centered :mask-closable="false" :get-container="() => modalRef" @cancel="() => (visible = false)">
+    <Modal
+      :visible="visible"
+      title="登录"
+      :destroy-on-close="true"
+      centered
+      :mask-closable="false"
+      :get-container="() => modalRef"
+      @cancel="() => (visible = false)"
+    >
       <template #footer> </template>
       <div v-show="model === 'qrcode'" class="qrcode-login">
         <QRcodeLogin @change-login-method="changeLoginMethod('normal')"></QRcodeLogin>

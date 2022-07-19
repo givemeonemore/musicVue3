@@ -10,19 +10,40 @@ import { useUserInfoStore } from '@/stores/user';
 // 获取当前登录的用户信息
 const userInfoStore = useUserInfoStore();
 
+// 获取当前 router 信息
 const router = useRouter();
-const menuRouter = router.getRoutes();
-// 获取第一级目录的数据
-const menu = menuRouter.filter((route) => {
-  if (route.meta && route.meta.level && route.meta.level === 'firstMenu') {
-    return route;
-  }
+
+const data = reactive({
+  menu: [] as any,
+  subMenu: [] as any,
 });
 
 // 菜单点击
 const handleMenuClick = (route: RouteLocationMatched): void => {
   if (route.path) {
     router.push(route.path);
+  }
+};
+
+// 路由切换
+const routerChange = () => {
+  const menuRouter = router.getRoutes();
+  // 获取第一级目录的数据
+  data.menu = menuRouter.filter((route) => {
+    if (route.meta && route.meta.level && route.meta.level === 'firstMenu') {
+      return route;
+    }
+  });
+  if (router.currentRoute.value.matched.length > 1) {
+    const redirectedFrom = router.currentRoute.value.matched[0].path;
+    // 获取第二级目录的数据
+    data.subMenu = menuRouter.filter((route) => {
+      if (route.meta && route.meta.level && route.meta.level === 'secondMenu' && route.path.includes(redirectedFrom)) {
+        return route;
+      }
+    });
+  } else {
+    data.subMenu = [];
   }
 };
 
@@ -46,9 +67,18 @@ const getSubStyle = () => {
   if (headerMenuRef.value) {
     subMenuStyle.left = `${headerMenuRef.value.offsetLeft}px`;
     // subMenuStyle.setProperty('left', `${headerMenuRef.value.clientWidth}px`);
-    console.log(headerMenuRef);
   }
 };
+
+watch(
+  () => {
+    return router.currentRoute.value.fullPath;
+  },
+  () => {
+    // console.log('1212121212');
+    routerChange();
+  },
+);
 
 watch(userInfoStore.userInfo, () => {
   if (!userInfoStore.userInfo || !Object.keys(userInfoStore.userInfo).length) {
@@ -58,6 +88,8 @@ watch(userInfoStore.userInfo, () => {
   }
 });
 
+// 初始化时，先显示当前路由的数据
+routerChange();
 onMounted(() => {
   getSubStyle();
   document.addEventListener('resize', () => {});
@@ -73,7 +105,7 @@ onMounted(() => {
       </span>
       <ul ref="headerMenuRef" class="header-menu">
         <li
-          v-for="route in menu"
+          v-for="route in data.menu"
           :key="(route.meta.cnTitle as string)"
           class="header-menu-item"
           :class="{ active: router.currentRoute.value.fullPath.includes(route.path) }"
@@ -93,10 +125,10 @@ onMounted(() => {
       <span class="header-creator-center">创作者中心</span>
       <User :have-user-info="haveUserInfo" />
     </div>
-    <div class="sub">
+    <div :class="data.subMenu.length ? 'sub' : 'sub-no-data'">
       <ul class="sub-menu" :style="subMenuStyle">
         <li
-          v-for="route in menu"
+          v-for="route in data.subMenu || []"
           :key="(route.meta.cnTitle as string)"
           class="sub-menu-item"
           :class="{ 'sub-menu-item-active': router.currentRoute.value.fullPath.includes(route.path) }"
@@ -113,6 +145,7 @@ onMounted(() => {
 .header-content {
   width: 100%;
 }
+
 .header {
   flex: 1 1 100%;
   height: 70px;
@@ -163,11 +196,13 @@ onMounted(() => {
       align-items: center;
       justify-content: center;
       position: relative;
+
       &-label {
         font-style: normal;
         text-align: left;
         font-size: 14px;
       }
+
       &-cor {
         display: flex;
         justify-content: center;
@@ -242,6 +277,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   position: relative;
+
   &-menu {
     display: flex;
     white-space: nowrap;
@@ -250,6 +286,7 @@ onMounted(() => {
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 0;
+
     &-item {
       padding: 0 19px;
       cursor: pointer;
@@ -260,9 +297,23 @@ onMounted(() => {
       justify-content: center;
       position: relative;
     }
+
     &-item-active {
       background-color: $color-sub-menu-active;
     }
   }
+}
+
+.sub-no-data {
+  background-color: $color-sub-menu;
+  padding: 2px 0;
+  margin-bottom: 0;
+  width: 100%;
+  // height: 34px;
+  color: #fff;
+  // max-width: 600px;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 </style>

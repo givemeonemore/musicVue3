@@ -2,7 +2,7 @@
  * @Author: zhouran
  * @Date: 2022-07-19 09:43:50
  * @LastEditors: zhouran
- * @LastEditTime: 2022-07-19 15:55:02
+ * @LastEditTime: 2022-07-19 16:20:45
  * @Description:
  */
 import { Router, createRouter, createWebHashHistory } from 'vue-router';
@@ -41,7 +41,7 @@ const routerModules = [
       rank: 4,
     },
   },
-  { ...findMusicRouter },
+  findMusicRouter,
   myMusic,
   friend,
   product,

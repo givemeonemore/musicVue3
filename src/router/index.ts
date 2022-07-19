@@ -42,7 +42,7 @@ const routerModules = [
     },
   },
   findMusicRouter,
-  myMusic,
+  { ...myMusic },
   friend,
   product,
   musician,

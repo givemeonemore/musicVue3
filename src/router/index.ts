@@ -1,3 +1,10 @@
+/*
+ * @Author: zhouran
+ * @Date: 2022-07-19 09:43:50
+ * @LastEditors: zhouran
+ * @LastEditTime: 2022-07-19 15:55:02
+ * @Description:
+ */
 import { Router, createRouter, createWebHashHistory } from 'vue-router';
 import findMusicRouter from './modules/findMusic';
 import myMusic from './modules/myMusic';
@@ -34,7 +41,7 @@ const routerModules = [
       rank: 4,
     },
   },
-  findMusicRouter,
+  { ...findMusicRouter },
   myMusic,
   friend,
   product,

@@ -66,7 +66,6 @@ const subMenuStyle = reactive({} as any); // 引入 HTMLAttributes 属性后，T
 const getSubStyle = () => {
   if (headerMenuRef.value) {
     subMenuStyle.left = `${headerMenuRef.value.offsetLeft}px`;
-    // subMenuStyle.setProperty('left', `${headerMenuRef.value.clientWidth}px`);
   }
 };
 
@@ -75,7 +74,6 @@ watch(
     return router.currentRoute.value.fullPath;
   },
   () => {
-    // console.log('1212121212');
     routerChange();
   },
 );

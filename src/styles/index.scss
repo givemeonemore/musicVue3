@@ -1,7 +1,7 @@
-@import "./mixin.scss";
-@import "./transition.scss";
-@import "./antd-vue-ui.scss";
-@import "./sidebar.scss";
+@import './mixin.scss';
+@import './transition.scss';
+@import './antd-vue-ui.scss';
+@import './sidebar.scss';
 
 body {
   width: 100%;
@@ -11,8 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-    Microsoft YaHei, Arial, sans-serif;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
 html {
@@ -59,7 +58,7 @@ ul {
     visibility: hidden;
     display: block;
     font-size: 0;
-    content: " ";
+    content: ' ';
     clear: both;
     height: 0;
   }
@@ -75,7 +74,7 @@ ul {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-  background: url("../assets/loginBg_new.png") no-repeat center;
+  background: url('../assets/loginBg_new.png') no-repeat center;
   background-size: cover;
 }
 
@@ -116,6 +115,6 @@ ul {
   margin: 0;
 }
 
-.el-popper[data-popper-placement^="bottom"] > .el-popper__arrow {
+.el-popper[data-popper-placement^='bottom'] > .el-popper__arrow {
   top: 0 !important;
 }

@@ -48,14 +48,6 @@
     "types": ["node", "vite/client", "webpack-env"],
     "typeRoots": ["./node_modules/@types/", "./types"]
   },
-  "include": [
-    "src/**/*.ts",
-    "@/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "types/*.d.ts",
-    "mock/*.ts",
-    "vite.config.ts"
-  ],
+  "include": ["src/**/*.ts", "@/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/*.d.ts", "mock/*.ts", "vite.config.ts"],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

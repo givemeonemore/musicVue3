@@ -25,9 +25,9 @@ addDirectives(app);
 const userInfoStore = useUserInfoStore();
 const getLogin = async () => {
   const { data }: LoginStatusInterface = await getLoginStatus();
-  if (data.code === 200) {
+  if (data?.code === 200) {
     userInfoStore.addUserInfo(data);
+    app.mount('#app');
   }
-  app.mount('#app');
 };
 getLogin();
